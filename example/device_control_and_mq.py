@@ -24,7 +24,7 @@ response = openapi.get("/v1.0/statistics-datas-survey", dict())
 
 # Init Message Queue
 open_pulsar = TuyaOpenPulsar(
-    ACCESS_ID, ACCESS_KEY, MQ_ENDPOINT, TuyaCloudPulsarTopic.TEST
+    ACCESS_ID, ACCESS_KEY, MQ_ENDPOINT, TuyaCloudPulsarTopic.PROD
 )
 # Add Message Queue listener
 open_pulsar.add_message_listener(lambda msg: print(f"---\nexample receive: {msg}"))
