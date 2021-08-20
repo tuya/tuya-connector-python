@@ -8,10 +8,9 @@ The `tuya-connector-python` SDK is desinged to support open APIs and Pulsar Mess
 
 ## Getting Started
 
-1. [Sign up for tuya developer account](https://auth.tuya.com/register?from=https%3A%2F%2Fiot.tuya.com%2F).
-2. [Create a cloud project](https://iot.tuya.com/cloud/), get the authorization key and other necessary parameters.
+1. [Sign up](https://auth.tuya.com/register?from=https%3A%2F%2Fiot.tuya.com%2F) for tuya developer account.
+2. [Create a cloud project](https://iot.tuya.com/cloud/). See the [tutorial](https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8) for how to get the authorization key and other necessary parameters.
 3. Quick Example:
-
 
 ``` python
 from tuya_connector import (
