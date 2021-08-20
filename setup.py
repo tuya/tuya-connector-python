@@ -19,14 +19,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 
 setup(
-    name='tuya-iot-py-sdk',
+    name='tuya-connector-python',
     url='https://github.com/tuya/tuya-connector-python',
     author="Tuya Inc.",
     author_email='developer@tuya.com',
     keywords='tuya iot cloud sdk python',
     long_description=doc_long_description,
     long_description_content_type="text/markdown",
-    description='A Python sdk for Tuya Open API, which provides IoT capabilities, maintained by Tuya official',
+    description='The `tuya-connector-python` SDK is desinged to support open APIs and Pulsar Messages provided by Tuya.',
     license='MIT',
     project_urls={
         "Bug Tracker": "https://github.com/tuya/tuya-connector-python/issues",
