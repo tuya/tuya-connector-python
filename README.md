@@ -1,10 +1,10 @@
 # tuya-connector-python
 
-The `tuya-connector-python` SDK is desinged to support open APIs and Pulsar Messages provided by Tuya. Before using, you can read more about Tuya cloud Development by accessing [official documentation](https://developer.tuya.com/en/docs/iot/quick-start1?id=K95ztz9u9t89n).
+The `tuya-connector-python` SDK is desinged to support open APIs and Pulsar messages provided by Tuya. Before using this SDK, you can see [Quick Start](https://developer.tuya.com/en/docs/iot/quick-start1?id=K95ztz9u9t89n) on the Tuya Developer website to learn more about Cloud Development Platform.
 
-## Installation
+## Install
 
-  `pip3 install tuya-connector-python`
+`pip3 install tuya-connector-python`
 
 ## Getting Started
 
@@ -12,53 +12,48 @@ The `tuya-connector-python` SDK is desinged to support open APIs and Pulsar Mess
 2. [Create a cloud project](https://iot.tuya.com/cloud/). See the [tutorial](https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8) for how to get the authorization key and other necessary parameters.
 3. Quick Example:
 
-``` python
-from tuya_connector import (
-    TuyaOpenAPI,
-    TuyaOpenPulsar,
-    TuyaCloudPulsarTopic,
-)
+	``` python
+	from tuya_connector import (
+		TuyaOpenAPI,
+		TuyaOpenPulsar,
+		TuyaCloudPulsarTopic,
+	)
 
-ACCESS_ID = "your-access-id"
-ACCESS_KEY = "your-access-key"
-API_ENDPOINT = "https://openapi.tuyacn.com"
-MQ_ENDPOINT = "wss://mqe.tuyacn.com:8285/"
+	ACCESS_ID = "your-access-id"
+	ACCESS_KEY = "your-access-key"
+	API_ENDPOINT = "https://openapi.tuyacn.com"
+	MQ_ENDPOINT = "wss://mqe.tuyacn.com:8285/"
 
-# Init openapi and connect
-openapi = TuyaOpenAPI(API_ENDPOINT, ACCESS_ID, ACCESS_KEY)
-openapi.connect()
+	# Init openapi and connect
+	openapi = TuyaOpenAPI(API_ENDPOINT, ACCESS_ID, ACCESS_KEY)
+	openapi.connect()
 
-# Call any API from Tuya
-response = openapi.get("/v1.0/statistics-datas-survey", dict())
+	# Call any API from Tuya
+	response = openapi.get("/v1.0/statistics-datas-survey", dict())
 
-# Init Message Queue
-open_pulsar = TuyaOpenPulsar(
-    ACCESS_ID, ACCESS_KEY, MQ_ENDPOINT, TuyaCloudPulsarTopic.PROD
-)
-# Add Message Queue listener
-open_pulsar.add_message_listener(lambda msg: print(f"---\nexample receive: {msg}"))
+	# Init Message Queue
+	open_pulsar = TuyaOpenPulsar(
+		ACCESS_ID, ACCESS_KEY, MQ_ENDPOINT, TuyaCloudPulsarTopic.PROD
+	)
+	# Add Message Queue listener
+	open_pulsar.add_message_listener(lambda msg: print(f"---\nexample receive: {msg}"))
 
-# Start Message Queue
-open_pulsar.start()
+	# Start Message Queue
+	open_pulsar.start()
 
-input()
-# Stop Message Queue
-open_pulsar.stop()
+	input()
+	# Stop Message Queue
+	open_pulsar.stop()
+	```
 
-```
+## Open API Reference
 
-## Tuya Open API Reference
+Tuya opens up a variety of APIs covering scenarios such as device pairing, asset management, and device control. You can call APIs according to [API reference](https://developer.tuya.com/en/docs/cloud/?_source=github) to create IoT applications.
 
-Tuya opens up a variety of APIs covering business scenarios such as device pairing, asset management, and device control. You can call APIs according to API integration documents to implement applications.
+## Feedback
 
-For more information, see the [documentation](https://developer.tuya.com/en/docs/cloud/?_source=github).
-<!-- [Documentation > Cloud Development > API Reference](https://developer.tuya.com/docs/iot/open-api/api-reference/api-reference) -->
-
-
-## Issue Feedback
-
-You can provide feedback on your issue via **Github Issue** or [Technical Ticket](https://service.console.tuya.com/).
+If you have any questions, please provide feedback via **Github Issue** or [Technical Ticket](https://service.console.tuya.com/).
 
 ## License
 
-tuya-iot-py-sdk is available under the MIT license. Please see the [LICENSE](./LICENSE) file for more information.
+The `tuya-connector-python` SDK is available under the MIT license. Please see the [LICENSE](./LICENSE) file for more information.
