@@ -106,7 +106,8 @@ class TuyaOpenPulsar(threading.Thread):
         key = key[8:24]
         cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
         raw = cipher.decrypt(raw)
-        res_str = str(raw, "utf-8").strip()
+        res_str = str(raw, "utf-8")
+        res_str = res_str[:-ord(res_str[-1])]
         return res_str
 
     @staticmethod
