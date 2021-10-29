@@ -145,7 +145,7 @@ class TuyaOpenAPI:
             return
 
         self.token_info.access_token = ""
-        response = self.post(
+        response = self.get(
             TO_B_REFRESH_TOKEN_API.format(self.token_info.refresh_token)
         )
 
