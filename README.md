@@ -39,10 +39,11 @@ The `tuya-connector-python` SDK is designed to support openAPIs and Pulsar messa
    # Call any API from Tuya
    response = openapi.get("/v1.0/statistics-datas-survey", dict())
    
-   # Init Message Queue
+   # Init Message Queue with subscription management
    open_pulsar = TuyaOpenPulsar(
-   	ACCESS_ID, ACCESS_KEY, MQ_ENDPOINT, TuyaCloudPulsarTopic.PROD
+   	ACCESS_ID, ACCESS_KEY, MQ_ENDPOINT, TuyaCloudPulsarTopic.PROD, suffix="sub"
    )
+   
    # Add Message Queue listener
    open_pulsar.add_message_listener(lambda msg: print(f"---\nexample receive: {msg}"))
    

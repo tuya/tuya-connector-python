@@ -40,7 +40,8 @@ class TuyaOpenPulsar(threading.Thread):
                  access_id: str,
                  access_secret: str,
                  ws_endpoint: str,
-                 topic: str):
+                 topic: str,
+                 suffix: str = "sub"):
         """Init TuyaOpenPulsar."""
         threading.Thread.__init__(self)
         self._stop_event = threading.Event()
@@ -50,6 +51,8 @@ class TuyaOpenPulsar(threading.Thread):
         self.__access_secret = access_secret
         self.__ws_endpoint = ws_endpoint
         self.__topic = topic
+
+        self.suffix = suffix
 
         self.message_listeners = set()
 
@@ -86,7 +89,7 @@ class TuyaOpenPulsar(threading.Thread):
         return self.__ws_endpoint + "ws/v2/consumer/persistent/"\
             + self.__access_id + "/out/"\
             + self.__topic + "/"\
-            + self.__access_id + "-sub"\
+            + self.__access_id + "-" + self.suffix\
             + WEB_SOCKET_QUERY_PARAMS
 
     def __message_handler(self, payload):
