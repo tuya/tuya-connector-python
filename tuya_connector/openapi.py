@@ -30,6 +30,7 @@ class TuyaTokenInfo:
         expire_time: Valid period in seconds.
         refresh_token: Refresh token.
         uid: Tuya user ID.
+        is_token_refreshing: If a token refresh is in progress.
     """
 
     def __init__(self, token_response: Dict[str, Any] = None):
@@ -43,6 +44,7 @@ class TuyaTokenInfo:
         self.access_token = result.get("access_token", "")
         self.refresh_token = result.get("refresh_token", "")
         self.uid = result.get("uid", "")
+        self.is_token_refreshing = False
 
 
 class TuyaOpenAPI:
@@ -117,7 +119,7 @@ class TuyaOpenAPI:
 
         message = self.access_id
         if self.token_info is not None:
-            message += self.token_info.access_token
+            message += "" if path.startswith(TO_B_TOKEN_API) else self.token_info.access_token
         message += str(t) + str_to_sign
         sign = (
             hmac.new(
@@ -144,7 +146,11 @@ class TuyaOpenAPI:
         if expired_time - 60 * 1000 > now:  # 1min
             return
 
-        self.token_info.access_token = ""
+        if self.token_info.is_token_refreshing:
+            return
+
+        self.token_info.is_token_refreshing = True
+
         response = self.get(
             TO_B_REFRESH_TOKEN_API.format(self.token_info.refresh_token)
         )
